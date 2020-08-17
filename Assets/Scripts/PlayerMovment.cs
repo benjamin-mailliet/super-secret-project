@@ -9,39 +9,45 @@ public class PlayerMovment : MonoBehaviour
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask groundLayer;
 
-    private Rigidbody2D rigidBody;
-    private SpriteRenderer spriteRenderer;
-
+    private float moveAxis; 
+    private bool doJump = false;
     private bool isGrounded = true;
     private float groundCheckRadius = 0.1f;
+
+    private Rigidbody2D rigidBody;
+    private SpriteRenderer spriteRenderer;
     
     void Awake() {
         rigidBody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    void FixedUpdate() {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-        run();
-        jump();
+    void Update() {
+        Move();
+        Jump();
     }
 
-    private void run() {
-        var move = Input.GetAxis("Horizontal");
-        rigidBody.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, rigidBody.velocity.y);
-        print(move);
-        print(rigidBody.velocity);
- 
-        if (move < 0)
+    void FixedUpdate() {
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        if (doJump) {
+            rigidBody.velocity = new Vector2(moveAxis * speed, jumpForce);
+            doJump = false;
+        } else {
+            rigidBody.velocity = new Vector2(moveAxis * speed, rigidBody.velocity.y);
+        }
+    }
+
+    private void Move() {
+        moveAxis = Input.GetAxis("Horizontal");
+        if (moveAxis < 0)
             spriteRenderer.flipX = true;
-        else if (move > 0)
+        else if (moveAxis > 0)
             spriteRenderer.flipX = false;
     }
 
-    private void jump() {
-         if (Input.GetKeyDown(KeyCode.Space) && isGrounded) {
-            isGrounded = false;
-            rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpForce);
+    private void Jump() {
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded && !doJump) {
+            doJump = true;
         }
     }
 }
