@@ -1,5 +1,4 @@
-# super-secret-project
-Super Secret Project...
+# Super secret project
 
 Liens utiles :
 * http://wiki.unity3d.com/index.php/Xbox360Controller
