@@ -35,11 +35,13 @@ public class TimeFlowManager : MonoBehaviour
         
         
         if(bulletTimeDurationCountdown != -1) {
-            GameObject.Find("BulletTimeDuration").GetComponent<Text>().text = bulletTimeDurationCountdown.ToString();
+            GameObject.Find("BulletTimeDuration").GetComponent<Text>().text = bulletTimeDurationCountdown.ToString("0.00");
             bulletTimeDurationCountdown -= Time.deltaTime;
             if (bulletTimeDurationCountdown < 0) {
                 StopSlowMotion();
             }
+        } else {
+            GameObject.Find("BulletTimeDuration").GetComponent<Text>().text = "";
         }
         Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
     }
