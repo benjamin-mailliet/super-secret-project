@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
-public class TimeFlowManager : MonoBehaviour
-{
+public class TimeFlowManager : MonoBehaviour, PlayerActionAsset.IPlayerActions {
 
     public float slowdownFactor;
     private float fixedDeltaTime;
     private float bulletTimeDurationCountdown = -1;
 
     private float bulletTimeDuration = 2f;
+
+    PlayerActionAsset playerActions;
 
     // Start is called before the first frame update
     void Start()
@@ -21,21 +23,25 @@ public class TimeFlowManager : MonoBehaviour
     void Awake() {
         // Make a copy of the fixedDeltaTime, it defaults to 0.02f, but it can be changed in the editor
         this.fixedDeltaTime = Time.fixedDeltaTime;
+        playerActions = new PlayerActionAsset();
+        playerActions.Player.SetCallbacks(this);
+    }
+
+    public void OnEnable() {
+        Debug.Log("Enabling player controls!");
+        playerActions.Player.Enable();
+    }
+
+    public void OnDisable() {
+        Debug.Log("Disabling player controls!");
+        playerActions.Player.Disable();
     }
 
     // Update is called once per frame
     void Update()
-    {
-        if (Input.GetButtonDown("Fire3")) {
-            DoSlowMotion();
-        }
-        if (Input.GetButtonUp("Fire3")) {
-            StopSlowMotion();
-        }
-        
-        
+    {        
         if(bulletTimeDurationCountdown != -1) {
-            GameObject.Find("BulletTimeDuration").GetComponent<Text>().text = bulletTimeDurationCountdown.ToString("0.00");
+            GameObject.Find("BulletTimeDuration").GetComponent<Text>().text = (bulletTimeDurationCountdown * 10).ToString("0.00");
             bulletTimeDurationCountdown -= Time.deltaTime;
             if (bulletTimeDurationCountdown < 0) {
                 StopSlowMotion();
@@ -47,18 +53,36 @@ public class TimeFlowManager : MonoBehaviour
     }
 
     private void DoSlowMotion() {
-        Debug.Log("Bullet time activated");
+        Debug.Log("Do Slow Motion");
+        // Code that active bullet time
         if (Time.timeScale == 1.0f) {
             Time.timeScale = slowdownFactor;
             bulletTimeDurationCountdown = bulletTimeDuration * slowdownFactor;
-        }        
+        }
     }
 
     private void StopSlowMotion() {
-        Debug.Log("Bullet time deactivated");
+        Debug.Log("Stop Slow Motion");
         if (Time.timeScale != 1.0f) {
             Time.timeScale = 1.0f;
             bulletTimeDurationCountdown = -1;
+        }
+    }
+
+    public void OnMove(InputAction.CallbackContext context) {
+        //Do nothing
+    }
+
+    public void OnJump(InputAction.CallbackContext context) {
+        //Do nothing
+    }
+
+    public void OnBulletTime(InputAction.CallbackContext context) {
+        Debug.Log("Bullet time value "  + context.ReadValue<float>());
+        if (context.ReadValue<float>() > 0.5) {
+            DoSlowMotion();
+        } else {
+            StopSlowMotion();
         }
     }
 }

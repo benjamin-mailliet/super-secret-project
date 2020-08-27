@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class PlayerMovment : MonoBehaviour
+public class PlayerMovment : MonoBehaviour, PlayerActionAsset.IPlayerActions
 {
     [SerializeField] float speed;
     [SerializeField] float jumpForce;
@@ -16,38 +15,62 @@ public class PlayerMovment : MonoBehaviour
 
     private Rigidbody2D rigidBody;
     private SpriteRenderer spriteRenderer;
-    
+
+    private Gamepad gamepad;
+    private Vector2 move;
+
+    PlayerActionAsset playerActions;
+
     void Awake() {
         rigidBody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        playerActions = new PlayerActionAsset();
+        playerActions.Player.SetCallbacks(this);
+    }
+
+    public void OnEnable() {
+        Debug.Log("Enabling player controls!");
+        playerActions.Player.Enable();
+    }
+
+    public void OnDisable() {
+        Debug.Log("Disabling player controls!");
+        playerActions.Player.Disable();
     }
 
     void Update() {
         Move();
-        Jump();
     }
 
-    void FixedUpdate() {
+    void FixedUpdate() {        
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
         if (doJump) {
-            rigidBody.velocity = new Vector2(moveAxis * speed, jumpForce);
+            rigidBody.velocity = new Vector2(move.x * speed, jumpForce);
             doJump = false;
         } else {
-            rigidBody.velocity = new Vector2(moveAxis * speed, rigidBody.velocity.y);
+            rigidBody.velocity = new Vector2(move.x * speed, rigidBody.velocity.y);
         }
     }
 
     private void Move() {
-        moveAxis = Input.GetAxis("Horizontal");
-        if (moveAxis < 0)
+        if (move.x < 0)
             spriteRenderer.flipX = true;
-        else if (moveAxis > 0)
+        else if (move.x > 0)
             spriteRenderer.flipX = false;
     }
 
-    private void Jump() {
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded && !doJump) {
+    public void OnMove(InputAction.CallbackContext context) {
+        move = context.ReadValue<Vector2>();
+    }
+
+    public void OnJump(InputAction.CallbackContext context) {
+        Debug.Log("JUMP");
+        if (isGrounded) {
             doJump = true;
         }
+    }
+
+    public void OnBulletTime(InputAction.CallbackContext context) {
+        // Do nothing
     }
 }
