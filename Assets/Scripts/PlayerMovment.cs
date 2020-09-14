@@ -65,12 +65,8 @@ public class PlayerMovment : MonoBehaviour, PlayerActionAsset.IPlayerActions
 
     public void OnJump(InputAction.CallbackContext context) {
         Debug.Log("JUMP");
-        if (isGrounded) {
+        if (isGrounded && context.performed) {
             doJump = true;
         }
-    }
-
-    public void OnBulletTime(InputAction.CallbackContext context) {
-        // Do nothing
     }
 }

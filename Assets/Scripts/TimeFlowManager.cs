@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
-public class TimeFlowManager : MonoBehaviour, PlayerActionAsset.IPlayerActions {
+public class TimeFlowManager : MonoBehaviour, PlayerActionAsset.IBulletTimeActions{
 
     public float slowdownFactor;
     private float fixedDeltaTime;
@@ -24,17 +24,17 @@ public class TimeFlowManager : MonoBehaviour, PlayerActionAsset.IPlayerActions {
         // Make a copy of the fixedDeltaTime, it defaults to 0.02f, but it can be changed in the editor
         this.fixedDeltaTime = Time.fixedDeltaTime;
         playerActions = new PlayerActionAsset();
-        playerActions.Player.SetCallbacks(this);
+        playerActions.BulletTime.SetCallbacks(this);
     }
 
     public void OnEnable() {
-        Debug.Log("Enabling player controls!");
-        playerActions.Player.Enable();
+        Debug.Log("Enabling bullet time controls!");
+        playerActions.BulletTime.Enable();
     }
 
     public void OnDisable() {
-        Debug.Log("Disabling player controls!");
-        playerActions.Player.Disable();
+        Debug.Log("Disabling bullet time controls!");
+        playerActions.BulletTime.Disable();
     }
 
     // Update is called once per frame
@@ -67,14 +67,6 @@ public class TimeFlowManager : MonoBehaviour, PlayerActionAsset.IPlayerActions {
             Time.timeScale = 1.0f;
             bulletTimeDurationCountdown = -1;
         }
-    }
-
-    public void OnMove(InputAction.CallbackContext context) {
-        //Do nothing
-    }
-
-    public void OnJump(InputAction.CallbackContext context) {
-        //Do nothing
     }
 
     public void OnBulletTime(InputAction.CallbackContext context) {

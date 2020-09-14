@@ -32,15 +32,7 @@ public class @PlayerActionAsset : IInputActionCollection, IDisposable
                     ""id"": ""460e03bc-15a1-4e5e-b7fc-2d8bb7a4eda4"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""BulletTime"",
-                    ""type"": ""Value"",
-                    ""id"": ""db0108f2-fe4a-4738-9000-231ce4aa98ae"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -184,17 +176,6 @@ public class @PlayerActionAsset : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""648a1070-3884-4eb4-a55c-02c1020eccc6"",
-                    ""path"": ""<Keyboard>/leftShift"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""BulletTime"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -705,6 +686,33 @@ public class @PlayerActionAsset : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""BulletTime"",
+            ""id"": ""f7436680-59df-4c8b-9164-39e05f0de309"",
+            ""actions"": [
+                {
+                    ""name"": ""BulletTime"",
+                    ""type"": ""Value"",
+                    ""id"": ""664269a9-76d1-4fdc-9da3-8b855e99f449"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""eb20868f-d6b9-4595-a062-8680ef8f2334"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""BulletTime"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -774,7 +782,6 @@ public class @PlayerActionAsset : IInputActionCollection, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_BulletTime = m_Player.FindAction("BulletTime", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -787,6 +794,9 @@ public class @PlayerActionAsset : IInputActionCollection, IDisposable
         m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+        // BulletTime
+        m_BulletTime = asset.FindActionMap("BulletTime", throwIfNotFound: true);
+        m_BulletTime_BulletTime = m_BulletTime.FindAction("BulletTime", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -838,14 +848,12 @@ public class @PlayerActionAsset : IInputActionCollection, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Jump;
-    private readonly InputAction m_Player_BulletTime;
     public struct PlayerActions
     {
         private @PlayerActionAsset m_Wrapper;
         public PlayerActions(@PlayerActionAsset wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
-        public InputAction @BulletTime => m_Wrapper.m_Player_BulletTime;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -861,9 +869,6 @@ public class @PlayerActionAsset : IInputActionCollection, IDisposable
                 @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @BulletTime.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBulletTime;
-                @BulletTime.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBulletTime;
-                @BulletTime.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBulletTime;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -874,9 +879,6 @@ public class @PlayerActionAsset : IInputActionCollection, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
-                @BulletTime.started += instance.OnBulletTime;
-                @BulletTime.performed += instance.OnBulletTime;
-                @BulletTime.canceled += instance.OnBulletTime;
             }
         }
     }
@@ -986,6 +988,39 @@ public class @PlayerActionAsset : IInputActionCollection, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // BulletTime
+    private readonly InputActionMap m_BulletTime;
+    private IBulletTimeActions m_BulletTimeActionsCallbackInterface;
+    private readonly InputAction m_BulletTime_BulletTime;
+    public struct BulletTimeActions
+    {
+        private @PlayerActionAsset m_Wrapper;
+        public BulletTimeActions(@PlayerActionAsset wrapper) { m_Wrapper = wrapper; }
+        public InputAction @BulletTime => m_Wrapper.m_BulletTime_BulletTime;
+        public InputActionMap Get() { return m_Wrapper.m_BulletTime; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(BulletTimeActions set) { return set.Get(); }
+        public void SetCallbacks(IBulletTimeActions instance)
+        {
+            if (m_Wrapper.m_BulletTimeActionsCallbackInterface != null)
+            {
+                @BulletTime.started -= m_Wrapper.m_BulletTimeActionsCallbackInterface.OnBulletTime;
+                @BulletTime.performed -= m_Wrapper.m_BulletTimeActionsCallbackInterface.OnBulletTime;
+                @BulletTime.canceled -= m_Wrapper.m_BulletTimeActionsCallbackInterface.OnBulletTime;
+            }
+            m_Wrapper.m_BulletTimeActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @BulletTime.started += instance.OnBulletTime;
+                @BulletTime.performed += instance.OnBulletTime;
+                @BulletTime.canceled += instance.OnBulletTime;
+            }
+        }
+    }
+    public BulletTimeActions @BulletTime => new BulletTimeActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -1035,7 +1070,6 @@ public class @PlayerActionAsset : IInputActionCollection, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnBulletTime(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
@@ -1049,5 +1083,9 @@ public class @PlayerActionAsset : IInputActionCollection, IDisposable
         void OnRightClick(InputAction.CallbackContext context);
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+    }
+    public interface IBulletTimeActions
+    {
+        void OnBulletTime(InputAction.CallbackContext context);
     }
 }

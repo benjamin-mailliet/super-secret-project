@@ -19,15 +19,7 @@
                     "id": "460e03bc-15a1-4e5e-b7fc-2d8bb7a4eda4",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "BulletTime",
-                    "type": "Value",
-                    "id": "db0108f2-fe4a-4738-9000-231ce4aa98ae",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
+                    "interactions": "Press"
                 }
             ],
             "bindings": [
@@ -171,17 +163,6 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "648a1070-3884-4eb4-a55c-02c1020eccc6",
-                    "path": "<Keyboard>/leftShift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "BulletTime",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -688,6 +669,33 @@
                     "processors": "",
                     "groups": "XR",
                     "action": "TrackedDeviceOrientation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "BulletTime",
+            "id": "f7436680-59df-4c8b-9164-39e05f0de309",
+            "actions": [
+                {
+                    "name": "BulletTime",
+                    "type": "Value",
+                    "id": "664269a9-76d1-4fdc-9da3-8b855e99f449",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "eb20868f-d6b9-4595-a062-8680ef8f2334",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "BulletTime",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
