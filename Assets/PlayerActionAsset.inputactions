@@ -719,6 +719,178 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Combinaison",
+            "id": "d53d50aa-6bd9-4f96-b644-5af9bd26a1aa",
+            "actions": [
+                {
+                    "name": "1_BoutonSud",
+                    "type": "Button",
+                    "id": "dba5337d-1657-41a7-9292-47f1ffb493c9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "2_BoutonEst",
+                    "type": "Button",
+                    "id": "e4418551-3684-44a1-8a55-1c1ea07bb1c0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "3_BoutonNord",
+                    "type": "Button",
+                    "id": "94d51034-5086-4fa0-af2c-b4f1cebb7607",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "4_BoutonOuest",
+                    "type": "Button",
+                    "id": "1a6f996c-1dd0-4129-91cb-ed32fa3dd5a7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "3ba9b793-6ef1-4ad9-89ca-259e52c05e14",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "1_BoutonSud",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7021c97e-db19-4f83-b927-2f687722aeff",
+                    "path": "<Keyboard>/#(&)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "1_BoutonSud",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "03a920bd-7eb0-405f-98cf-ff77242ce5c8",
+                    "path": "<Keyboard>/numpad1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "1_BoutonSud",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "847a1961-ae5e-410a-9bf3-c5ef4ef82894",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "2_BoutonEst",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "27d957fb-d764-4edd-8b0c-ce38abd4eabe",
+                    "path": "<Keyboard>/#(é)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "2_BoutonEst",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ff0d35e3-e85d-46f5-a66b-90afb0461ccc",
+                    "path": "<Keyboard>/numpad2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "2_BoutonEst",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c4b038be-aee5-436f-83d8-51491daa5f4f",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "3_BoutonNord",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bd139ef0-3f45-424d-abd2-07902680de73",
+                    "path": "<Keyboard>/#(\")",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "3_BoutonNord",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "17d74524-f90a-4e64-8708-2e06fff54d60",
+                    "path": "<Keyboard>/numpad3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "3_BoutonNord",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f0d276b9-b544-4942-9d1d-be759208a269",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "4_BoutonOuest",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "09eb7228-f0a3-4169-af39-a09ad8309bb3",
+                    "path": "<Keyboard>/#(')",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "4_BoutonOuest",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "09a12c28-1dc6-4a88-adee-d0af21fc7fa4",
+                    "path": "<Keyboard>/numpad4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "4_BoutonOuest",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

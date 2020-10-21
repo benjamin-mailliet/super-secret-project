@@ -732,6 +732,178 @@ public class @PlayerActionAsset : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Combinaison"",
+            ""id"": ""d53d50aa-6bd9-4f96-b644-5af9bd26a1aa"",
+            ""actions"": [
+                {
+                    ""name"": ""1_BoutonSud"",
+                    ""type"": ""Button"",
+                    ""id"": ""dba5337d-1657-41a7-9292-47f1ffb493c9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""2_BoutonEst"",
+                    ""type"": ""Button"",
+                    ""id"": ""e4418551-3684-44a1-8a55-1c1ea07bb1c0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""3_BoutonNord"",
+                    ""type"": ""Button"",
+                    ""id"": ""94d51034-5086-4fa0-af2c-b4f1cebb7607"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""4_BoutonOuest"",
+                    ""type"": ""Button"",
+                    ""id"": ""1a6f996c-1dd0-4129-91cb-ed32fa3dd5a7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""3ba9b793-6ef1-4ad9-89ca-259e52c05e14"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""1_BoutonSud"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7021c97e-db19-4f83-b927-2f687722aeff"",
+                    ""path"": ""<Keyboard>/#(&)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""1_BoutonSud"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""03a920bd-7eb0-405f-98cf-ff77242ce5c8"",
+                    ""path"": ""<Keyboard>/numpad1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""1_BoutonSud"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""847a1961-ae5e-410a-9bf3-c5ef4ef82894"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""2_BoutonEst"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""27d957fb-d764-4edd-8b0c-ce38abd4eabe"",
+                    ""path"": ""<Keyboard>/#(é)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""2_BoutonEst"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ff0d35e3-e85d-46f5-a66b-90afb0461ccc"",
+                    ""path"": ""<Keyboard>/numpad2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""2_BoutonEst"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c4b038be-aee5-436f-83d8-51491daa5f4f"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""3_BoutonNord"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bd139ef0-3f45-424d-abd2-07902680de73"",
+                    ""path"": ""<Keyboard>/#(\"")"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""3_BoutonNord"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""17d74524-f90a-4e64-8708-2e06fff54d60"",
+                    ""path"": ""<Keyboard>/numpad3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""3_BoutonNord"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f0d276b9-b544-4942-9d1d-be759208a269"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""4_BoutonOuest"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""09eb7228-f0a3-4169-af39-a09ad8309bb3"",
+                    ""path"": ""<Keyboard>/#(')"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""4_BoutonOuest"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""09a12c28-1dc6-4a88-adee-d0af21fc7fa4"",
+                    ""path"": ""<Keyboard>/numpad4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""4_BoutonOuest"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -817,6 +989,12 @@ public class @PlayerActionAsset : IInputActionCollection, IDisposable
         // BulletTime
         m_BulletTime = asset.FindActionMap("BulletTime", throwIfNotFound: true);
         m_BulletTime_BulletTime = m_BulletTime.FindAction("BulletTime", throwIfNotFound: true);
+        // Combinaison
+        m_Combinaison = asset.FindActionMap("Combinaison", throwIfNotFound: true);
+        m_Combinaison__1_BoutonSud = m_Combinaison.FindAction("1_BoutonSud", throwIfNotFound: true);
+        m_Combinaison__2_BoutonEst = m_Combinaison.FindAction("2_BoutonEst", throwIfNotFound: true);
+        m_Combinaison__3_BoutonNord = m_Combinaison.FindAction("3_BoutonNord", throwIfNotFound: true);
+        m_Combinaison__4_BoutonOuest = m_Combinaison.FindAction("4_BoutonOuest", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1049,6 +1227,63 @@ public class @PlayerActionAsset : IInputActionCollection, IDisposable
         }
     }
     public BulletTimeActions @BulletTime => new BulletTimeActions(this);
+
+    // Combinaison
+    private readonly InputActionMap m_Combinaison;
+    private ICombinaisonActions m_CombinaisonActionsCallbackInterface;
+    private readonly InputAction m_Combinaison__1_BoutonSud;
+    private readonly InputAction m_Combinaison__2_BoutonEst;
+    private readonly InputAction m_Combinaison__3_BoutonNord;
+    private readonly InputAction m_Combinaison__4_BoutonOuest;
+    public struct CombinaisonActions
+    {
+        private @PlayerActionAsset m_Wrapper;
+        public CombinaisonActions(@PlayerActionAsset wrapper) { m_Wrapper = wrapper; }
+        public InputAction @_1_BoutonSud => m_Wrapper.m_Combinaison__1_BoutonSud;
+        public InputAction @_2_BoutonEst => m_Wrapper.m_Combinaison__2_BoutonEst;
+        public InputAction @_3_BoutonNord => m_Wrapper.m_Combinaison__3_BoutonNord;
+        public InputAction @_4_BoutonOuest => m_Wrapper.m_Combinaison__4_BoutonOuest;
+        public InputActionMap Get() { return m_Wrapper.m_Combinaison; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CombinaisonActions set) { return set.Get(); }
+        public void SetCallbacks(ICombinaisonActions instance)
+        {
+            if (m_Wrapper.m_CombinaisonActionsCallbackInterface != null)
+            {
+                @_1_BoutonSud.started -= m_Wrapper.m_CombinaisonActionsCallbackInterface.On_1_BoutonSud;
+                @_1_BoutonSud.performed -= m_Wrapper.m_CombinaisonActionsCallbackInterface.On_1_BoutonSud;
+                @_1_BoutonSud.canceled -= m_Wrapper.m_CombinaisonActionsCallbackInterface.On_1_BoutonSud;
+                @_2_BoutonEst.started -= m_Wrapper.m_CombinaisonActionsCallbackInterface.On_2_BoutonEst;
+                @_2_BoutonEst.performed -= m_Wrapper.m_CombinaisonActionsCallbackInterface.On_2_BoutonEst;
+                @_2_BoutonEst.canceled -= m_Wrapper.m_CombinaisonActionsCallbackInterface.On_2_BoutonEst;
+                @_3_BoutonNord.started -= m_Wrapper.m_CombinaisonActionsCallbackInterface.On_3_BoutonNord;
+                @_3_BoutonNord.performed -= m_Wrapper.m_CombinaisonActionsCallbackInterface.On_3_BoutonNord;
+                @_3_BoutonNord.canceled -= m_Wrapper.m_CombinaisonActionsCallbackInterface.On_3_BoutonNord;
+                @_4_BoutonOuest.started -= m_Wrapper.m_CombinaisonActionsCallbackInterface.On_4_BoutonOuest;
+                @_4_BoutonOuest.performed -= m_Wrapper.m_CombinaisonActionsCallbackInterface.On_4_BoutonOuest;
+                @_4_BoutonOuest.canceled -= m_Wrapper.m_CombinaisonActionsCallbackInterface.On_4_BoutonOuest;
+            }
+            m_Wrapper.m_CombinaisonActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @_1_BoutonSud.started += instance.On_1_BoutonSud;
+                @_1_BoutonSud.performed += instance.On_1_BoutonSud;
+                @_1_BoutonSud.canceled += instance.On_1_BoutonSud;
+                @_2_BoutonEst.started += instance.On_2_BoutonEst;
+                @_2_BoutonEst.performed += instance.On_2_BoutonEst;
+                @_2_BoutonEst.canceled += instance.On_2_BoutonEst;
+                @_3_BoutonNord.started += instance.On_3_BoutonNord;
+                @_3_BoutonNord.performed += instance.On_3_BoutonNord;
+                @_3_BoutonNord.canceled += instance.On_3_BoutonNord;
+                @_4_BoutonOuest.started += instance.On_4_BoutonOuest;
+                @_4_BoutonOuest.performed += instance.On_4_BoutonOuest;
+                @_4_BoutonOuest.canceled += instance.On_4_BoutonOuest;
+            }
+        }
+    }
+    public CombinaisonActions @Combinaison => new CombinaisonActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -1116,5 +1351,12 @@ public class @PlayerActionAsset : IInputActionCollection, IDisposable
     public interface IBulletTimeActions
     {
         void OnBulletTime(InputAction.CallbackContext context);
+    }
+    public interface ICombinaisonActions
+    {
+        void On_1_BoutonSud(InputAction.CallbackContext context);
+        void On_2_BoutonEst(InputAction.CallbackContext context);
+        void On_3_BoutonNord(InputAction.CallbackContext context);
+        void On_4_BoutonOuest(InputAction.CallbackContext context);
     }
 }
