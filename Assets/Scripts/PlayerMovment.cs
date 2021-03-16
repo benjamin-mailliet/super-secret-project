@@ -93,7 +93,7 @@ public class PlayerMovment : MonoBehaviour, PlayerActionAsset.IPlayerActions
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && Time.timeScale >= 1.0f)
         {
             doJump = true;
         }
@@ -101,7 +101,7 @@ public class PlayerMovment : MonoBehaviour, PlayerActionAsset.IPlayerActions
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (!doDash && dashCurrentCooldown <= 0)
+        if (!doDash && dashCurrentCooldown <= 0 && Time.timeScale >= 1.0f)
         {
             doDash = true;
             dashCurrentCooldown = dashCooldown;
