@@ -68,7 +68,6 @@ public class TimeFlowManager : MonoBehaviour, PlayerActionAsset.IBulletTimeActio
     }
 
     public void OnBulletTime(InputAction.CallbackContext context) {
-        Debug.Log("Bullet time value "  + context.ReadValue<float>());
         if (context.ReadValue<float>() > 0.5) {
             DoSlowMotion();
         } else {
