@@ -7,8 +7,6 @@ public class CombinaisonManager : MonoBehaviour, PlayerActionAsset.ICombinaisonA
 
     public List<int> currentCombinaison;
 
-    private Gamepad gamepad;
-
     private PlayerActionAsset playerActionAsset;
 
     void Awake() {
@@ -23,12 +21,12 @@ public class CombinaisonManager : MonoBehaviour, PlayerActionAsset.ICombinaisonA
     }
 
     public void OnEnable() {
-        Debug.Log("Enabling bullet time controls!");
+        Debug.Log("Enabling combinaison controls!");
         playerActionAsset.Combinaison.Enable();
     }
 
     public void OnDisable() {
-        Debug.Log("Disabling bullet time controls!");
+        Debug.Log("Disabling combinaison controls!");
         playerActionAsset.Combinaison.Disable();
     }
 
@@ -63,8 +61,9 @@ public class CombinaisonManager : MonoBehaviour, PlayerActionAsset.ICombinaisonA
 
     
     public void On_1_BoutonSud(InputAction.CallbackContext context) {
-        if (context.performed) {
-            Debug.Log("Player input Action1");
+        
+        if (context.performed && Time.timeScale<1.0f) {
+            Debug.Log("Player input Action1 with " + context.control.device.displayName);
             if (currentCombinaison[0] == 1) {
                 currentCombinaison.RemoveAt(0);
                 updateUICurrentCombinaison();
@@ -75,8 +74,8 @@ public class CombinaisonManager : MonoBehaviour, PlayerActionAsset.ICombinaisonA
     }
 
     public void On_2_BoutonEst(InputAction.CallbackContext context) {
-        if (context.performed) {
-            Debug.Log("Player input Action2");
+        if (context.performed && Time.timeScale < 1.0f) {
+            Debug.Log("Player input Action2 with " + context.control.device.deviceId);
             if (currentCombinaison[0] == 2) {
                 currentCombinaison.RemoveAt(0);
                 updateUICurrentCombinaison();
@@ -87,8 +86,8 @@ public class CombinaisonManager : MonoBehaviour, PlayerActionAsset.ICombinaisonA
     }
 
     public void On_3_BoutonNord(InputAction.CallbackContext context) {
-        if (context.performed) {
-            Debug.Log("Player input Action3");
+        if (context.performed && Time.timeScale < 1.0f) {
+            Debug.Log("Player input Action3 with " + context.control.device.deviceId);
             if (currentCombinaison[0] == 3) {
                 currentCombinaison.RemoveAt(0);
                 updateUICurrentCombinaison();
@@ -99,8 +98,8 @@ public class CombinaisonManager : MonoBehaviour, PlayerActionAsset.ICombinaisonA
     }
 
     public void On_4_BoutonOuest(InputAction.CallbackContext context) {
-        if (context.performed) {
-            Debug.Log("Player input Action4");
+        if (context.performed && Time.timeScale < 1.0f) {
+            Debug.Log("Player input Action4 with " + context.control.device.deviceId);
             if (currentCombinaison[0] == 4) {
                 currentCombinaison.RemoveAt(0);
                 updateUICurrentCombinaison();
