@@ -12,16 +12,27 @@ public class PlayerMovment : MonoBehaviour, PlayerActionAsset.IPlayerActions
     private float moveAxis;
 
     // Move
-    [SerializeField] float speed;
+    float speed = 30;
+    float decreaseSpeedOnJump = 1;
     private Vector2 moveDirection;
 
     // Jump
-    [SerializeField] float jumpForce;
+    float jumpForce = 50;
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask groundLayer;
     private bool doJump = false;
     private bool isGrounded = true;
     private float groundCheckRadius = 0.1f;
+
+    // Wall jump
+    [SerializeField] RectTransform wallCheckRight;
+    [SerializeField] RectTransform wallCheckLeft;
+    [SerializeField] LayerMask wallLayer;
+    private bool isWalledRight = false;
+    private bool isWalledLeft = false;
+    private int wallJumpVelocity = 30;
+    private float wallJumpDuration = 0.1f;
+    private float wallJumpCurrentDuration = 0f;
 
     // Dash
     private bool doDash = false;
@@ -58,17 +69,23 @@ public class PlayerMovment : MonoBehaviour, PlayerActionAsset.IPlayerActions
     void FixedUpdate()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        isWalledRight = Physics2D.OverlapBox(wallCheckRight.position, wallCheckRight.rect.size, 1, wallLayer);
+        isWalledLeft = Physics2D.OverlapBox(wallCheckLeft.position, wallCheckLeft.rect.size, 1, wallLayer);
         Move();
         Jump();
         Dash();
+        WallSlide();
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        if (doDash) {
-            // lors du dash, on set le moveDirection à 0 pour éviter que le personnage bouge tout seul ensuite
+        if (doDash)
+        {
+            // FIX : lors du dash, on set le moveDirection à 0 pour éviter que le personnage se déplace tout seul ensuite
             moveDirection = Vector2.zero;
-        } else {
+        }
+        else
+        {
             moveDirection = context.ReadValue<Vector2>();
             facingDirection = (moveDirection != Vector2.zero) ? moveDirection : facingDirection;
         }
@@ -76,14 +93,16 @@ public class PlayerMovment : MonoBehaviour, PlayerActionAsset.IPlayerActions
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (!doDash && isGrounded && context.performed) {
+        if (context.performed)
+        {
             doJump = true;
-        }     
+        }
     }
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (!doDash && dashCurrentCooldown <= 0) {
+        if (!doDash && dashCurrentCooldown <= 0)
+        {
             doDash = true;
             dashCurrentCooldown = dashCooldown;
             particleSystem.Play();
@@ -92,19 +111,54 @@ public class PlayerMovment : MonoBehaviour, PlayerActionAsset.IPlayerActions
 
     private void Move()
     {
-        rigidBody.velocity = new Vector2(moveDirection.x * speed, rigidBody.velocity.y);
+        if (wallJumpCurrentDuration > 0)
+        {
+            wallJumpCurrentDuration -= Time.fixedDeltaTime;
+        }
+        else
+        {
+            if (!isGrounded && moveDirection == Vector2.zero)
+            {
+                float xDirection;
+                if (rigidBody.velocity.x > 0)
+                {
+                    xDirection = Mathf.Clamp(rigidBody.velocity.x - decreaseSpeedOnJump, 0, speed);
+                }
+                else
+                {
+                    xDirection = Mathf.Clamp(rigidBody.velocity.x + decreaseSpeedOnJump, -speed, 0);
+                }
+                rigidBody.velocity = new Vector2(xDirection, rigidBody.velocity.y);
+            }
+            else
+            {
+                rigidBody.velocity = new Vector2(moveDirection.x * speed, rigidBody.velocity.y);
+            }
 
-        if (moveDirection.x < 0)
-            spriteRenderer.flipX = true;
-        else if (moveDirection.x > 0)
-            spriteRenderer.flipX = false;
+            if (moveDirection.x < 0)
+                spriteRenderer.flipX = true;
+            else if (moveDirection.x > 0)
+                spriteRenderer.flipX = false;
+        }
     }
 
     private void Jump()
     {
-        if (doJump)
+        if (!doDash && doJump && (isGrounded || isWalledLeft || isWalledRight))
         {
-            rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpForce);
+            Vector2 newVelocity = new Vector2(rigidBody.velocity.x, jumpForce);
+            if (isWalledLeft)
+            {
+                newVelocity.x = wallJumpVelocity;
+                wallJumpCurrentDuration = wallJumpDuration;
+            }
+            else if (isWalledRight)
+            {
+                newVelocity.x = -wallJumpVelocity;
+                wallJumpCurrentDuration = wallJumpDuration;
+            }
+
+            rigidBody.velocity = newVelocity;
         }
 
         doJump = false;
@@ -129,4 +183,17 @@ public class PlayerMovment : MonoBehaviour, PlayerActionAsset.IPlayerActions
 
         dashCurrentCooldown -= Time.fixedDeltaTime;
     }
+
+    private void WallSlide()
+    {
+        if ((isWalledLeft || isWalledRight) && rigidBody.velocity.y < 0)
+        {
+            rigidBody.drag = 35;
+        }
+        else
+        {
+            rigidBody.drag = 0;
+        }
+    }
+
 }
