@@ -9,6 +9,16 @@ public class CombinaisonManager : MonoBehaviour, PlayerActionAsset.ICombinaisonA
 
     private PlayerActionAsset playerActionAsset;
 
+    private CONTROL_SCHEME currentControlScheme = CONTROL_SCHEME.GAMEPAD;
+
+    private enum CONTROL_SCHEME
+    {
+        GAMEPAD,
+        KEYBOARD
+    };
+
+    private bool bDetectKey;
+
     void Awake() {
         playerActionAsset = new PlayerActionAsset();
         playerActionAsset.Combinaison.SetCallbacks(this);
@@ -17,6 +27,21 @@ public class CombinaisonManager : MonoBehaviour, PlayerActionAsset.ICombinaisonA
     // Start is called before the first frame update
     void Start()
     {
+        InputSystem.onEvent +=
+        (eventPtr, device) =>
+        {
+            var gamepad = device as Gamepad;
+            if (gamepad == null)
+            {
+                this.currentControlScheme = CONTROL_SCHEME.KEYBOARD;
+                updateUICurrentCombinaison();
+            }
+            else
+            {
+                this.currentControlScheme = CONTROL_SCHEME.GAMEPAD;
+                updateUICurrentCombinaison();
+            }
+        };
         reinitCombinaison();
     }
 
@@ -33,7 +58,7 @@ public class CombinaisonManager : MonoBehaviour, PlayerActionAsset.ICombinaisonA
     // Update is called once per frame
     void Update()
     {
-        if(currentCombinaison.Count < 1) {
+        if (currentCombinaison.Count < 1) {
             Debug.Log("YOU ARE TOO STRONG FOR ME !");
             reinitCombinaison();
         }
@@ -51,7 +76,7 @@ public class CombinaisonManager : MonoBehaviour, PlayerActionAsset.ICombinaisonA
     void updateUICurrentCombinaison() {
         string currentCombinaisonText = "";
         for(int i = 0; i < currentCombinaison.Count; i++) {
-            currentCombinaisonText = currentCombinaisonText + currentCombinaison[i];
+            currentCombinaisonText = currentCombinaisonText + this.displayCombinaisonForControlScheme(currentCombinaison[i]);
             if(i < currentCombinaison.Count - 1) {
                 currentCombinaisonText = currentCombinaisonText + " - ";
             }
@@ -61,7 +86,6 @@ public class CombinaisonManager : MonoBehaviour, PlayerActionAsset.ICombinaisonA
 
     
     public void On_1_BoutonSud(InputAction.CallbackContext context) {
-        
         if (context.performed && Time.timeScale<1.0f) {
             Debug.Log("Player input Action1 with " + context.control.device.displayName);
             if (currentCombinaison[0] == 1) {
@@ -108,4 +132,29 @@ public class CombinaisonManager : MonoBehaviour, PlayerActionAsset.ICombinaisonA
             }
         }
     }
+
+    private string displayCombinaisonForControlScheme(int combinaison)
+    {
+        if (this.currentControlScheme == CONTROL_SCHEME.GAMEPAD)
+        {
+            switch (combinaison)
+            {
+                case 1:
+                    return "A";
+                case 2:
+                    return "B";
+                case 3:
+                    return "Y";
+                case 4:
+                    return "X";
+                default:
+                    return "";
+            }
+        }
+        else
+        {
+            return combinaison + "";
+        }
+    }
+
 }
