@@ -1,18 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
-public class CombinaisonManager : MonoBehaviour
-{
-
-    private static string[] xboxTouches = { "A", "B", "X", "Y" };
+public class CombinaisonManager : MonoBehaviour, PlayerActionAsset.ICombinaisonActions {
 
     public List<int> currentCombinaison;
 
     private Gamepad gamepad;
 
+    private PlayerActionAsset playerActionAsset;
+
+    void Awake() {
+        playerActionAsset = new PlayerActionAsset();
+        playerActionAsset.Combinaison.SetCallbacks(this);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -20,27 +22,27 @@ public class CombinaisonManager : MonoBehaviour
         reinitCombinaison();
     }
 
+    public void OnEnable() {
+        Debug.Log("Enabling bullet time controls!");
+        playerActionAsset.Combinaison.Enable();
+    }
+
+    public void OnDisable() {
+        Debug.Log("Disabling bullet time controls!");
+        playerActionAsset.Combinaison.Disable();
+    }
+
     // Update is called once per frame
     void Update()
     {
-        /*gamepad = Gamepad.current;
-        if (gamepad == null) {
-            foreach(Gamepad gamepadCurrent in Gamepad.all){
-                Debug.Log("Gamepad " + gamepadCurrent.displayName);
-                Debug.Log("Index " + gamepadCurrent.device);
-            }
-            Debug.LogError("Gamepad non reconnu");
-            return; // No gamepad connected.
-        }
-        checkPlayerInput();
         if(currentCombinaison.Count < 1) {
             Debug.Log("YOU ARE TOO STRONG FOR ME !");
             reinitCombinaison();
-        }*/
+        }
     }
 
     List<int> makeNewCombinaison() {
-        return  new List<int> { Random.Range(0, 4), Random.Range(0, 4), Random.Range(0, 4), Random.Range(0, 4) };
+        return  new List<int> { Random.Range(1, 5), Random.Range(1, 5), Random.Range(1, 5), Random.Range(1, 5) };
     }
 
     void reinitCombinaison() {
@@ -51,7 +53,7 @@ public class CombinaisonManager : MonoBehaviour
     void updateUICurrentCombinaison() {
         string currentCombinaisonText = "";
         for(int i = 0; i < currentCombinaison.Count; i++) {
-            currentCombinaisonText = currentCombinaisonText + xboxTouches[currentCombinaison[i]];
+            currentCombinaisonText = currentCombinaisonText + currentCombinaison[i];
             if(i < currentCombinaison.Count - 1) {
                 currentCombinaisonText = currentCombinaisonText + " - ";
             }
@@ -59,39 +61,52 @@ public class CombinaisonManager : MonoBehaviour
         GameObject.Find("CombinaisonToType").GetComponent<Text>().text = currentCombinaisonText;
     }
 
-    void checkPlayerInput() {
-        if (gamepad.aButton.wasPressedThisFrame) {
+    
+    public void On_1_BoutonSud(InputAction.CallbackContext context) {
+        if (context.performed) {
             Debug.Log("Player input Action1");
-            if (currentCombinaison[0] == 0) {
-                currentCombinaison.RemoveAt(0);
-            } else {
-                reinitCombinaison();
-            }
-        }
-        if (gamepad.bButton.wasPressedThisFrame) {
-            Debug.Log("Player input Action2");
             if (currentCombinaison[0] == 1) {
                 currentCombinaison.RemoveAt(0);
+                updateUICurrentCombinaison();
             } else {
                 reinitCombinaison();
             }
         }
-        if (gamepad.xButton.wasPressedThisFrame) {
-            Debug.Log("Player input Action3");
+    }
+
+    public void On_2_BoutonEst(InputAction.CallbackContext context) {
+        if (context.performed) {
+            Debug.Log("Player input Action2");
             if (currentCombinaison[0] == 2) {
                 currentCombinaison.RemoveAt(0);
+                updateUICurrentCombinaison();
             } else {
                 reinitCombinaison();
             }
         }
-        if (gamepad.yButton.wasPressedThisFrame) {
-            Debug.Log("Player input Action4");
+    }
+
+    public void On_3_BoutonNord(InputAction.CallbackContext context) {
+        if (context.performed) {
+            Debug.Log("Player input Action3");
             if (currentCombinaison[0] == 3) {
                 currentCombinaison.RemoveAt(0);
+                updateUICurrentCombinaison();
             } else {
                 reinitCombinaison();
             }
         }
-        updateUICurrentCombinaison();
+    }
+
+    public void On_4_BoutonOuest(InputAction.CallbackContext context) {
+        if (context.performed) {
+            Debug.Log("Player input Action4");
+            if (currentCombinaison[0] == 4) {
+                currentCombinaison.RemoveAt(0);
+                updateUICurrentCombinaison();
+            } else {
+                reinitCombinaison();
+            }
+        }
     }
 }
