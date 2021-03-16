@@ -18,11 +18,10 @@ public class PlayerMovment : MonoBehaviour, PlayerActionAsset.IPlayerActions
 
     // Jump
     float jumpForce = 50;
-    [SerializeField] Transform groundCheck;
+    [SerializeField] RectTransform groundCheck;
     [SerializeField] LayerMask groundLayer;
     private bool doJump = false;
     private bool isGrounded = true;
-    private float groundCheckRadius = 0.1f;
 
     // Wall jump
     [SerializeField] RectTransform wallCheckRight;
@@ -68,7 +67,7 @@ public class PlayerMovment : MonoBehaviour, PlayerActionAsset.IPlayerActions
 
     void FixedUpdate()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        isGrounded = Physics2D.OverlapBox(groundCheck.position, groundCheck.rect.size, 1, groundLayer);
         isWalledRight = Physics2D.OverlapBox(wallCheckRight.position, wallCheckRight.rect.size, 1, wallLayer);
         isWalledLeft = Physics2D.OverlapBox(wallCheckLeft.position, wallCheckLeft.rect.size, 1, wallLayer);
         Move();
