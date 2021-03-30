@@ -7,13 +7,18 @@ public class CombinaisonManager : MonoBehaviour {
 
     public List<int> currentCombinaison;
 
+    private GameObject explosion;
+
+    private bool combinaisonFinished = false;
+
     void Awake() {
         
     }
 
     // Start is called before the first frame update
     void Start()
-    {        
+    {
+        explosion = Resources.Load("Arcade Spark") as GameObject;
         reinitCombinaison();
     }
 
@@ -21,9 +26,12 @@ public class CombinaisonManager : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (currentCombinaison.Count < 1) {
+        if (currentCombinaison.Count < 1 && !combinaisonFinished) {
+            combinaisonFinished = true;
             Debug.Log("Destroy the fly");
-            Destroy(this.gameObject);
+            explosion = Instantiate(explosion, new Vector2(this.gameObject.transform.position.x, this.gameObject.transform.position.y), Quaternion.identity);
+            Destroy(this.explosion, 1);
+            Destroy(this.gameObject);            
         }
     }
 
