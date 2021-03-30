@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class Fly : MonoBehaviour
 {
-    GameObject player;
-    private float speed = 4f;
+    private GameObject player;
+    private Vector2 target;
+
+    private float speed = 5f;
+    private float minErraticMoveStrength = 15f;
+    private float maxErraticMoveStrength = 25f;
+    private float erraticMoveFrequency = 0.8f;
+    private float erraticMoveTimer = 0;
 
     void Start()
     {
@@ -14,12 +20,23 @@ public class Fly : MonoBehaviour
 
     void Update()
     {
-        Move();
+        makeErraticMovment();
+        transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
     }
 
-    private void Move()
+    private void makeErraticMovment()
     {
-        Vector2 playerPosition = new Vector2(player.transform.position.x, player.transform.position.y);
-        transform.position = Vector2.MoveTowards(transform.position, playerPosition, speed * Time.deltaTime);
+        if (erraticMoveTimer > 0)
+        {
+            erraticMoveTimer -= Time.deltaTime;
+        }
+        else
+        {
+            erraticMoveTimer = Random.Range(0f, erraticMoveFrequency);
+            float strength = Random.Range(minErraticMoveStrength, maxErraticMoveStrength);
+            float erraticValueX = Random.Range(-1 * strength, 1 * strength);
+            float erraticValueY = Random.Range(-1 * strength, 1 * strength);
+            target = new Vector2(player.transform.position.x + erraticValueX, player.transform.position.y + erraticValueY);
+        }
     }
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3637042770813317025}
   - component: {fileID: 5473695990932650763}
   m_Layer: 0
-  m_Name: fly
+  m_Name: Fly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,3 +95,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0842239d9e9a13645b5bc2209e40e787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minSpeed: 4
+  maxSpeed: 8
+  minErraticMoveStrength: 15
+  maxErraticMoveStrength: 25
+  erraticMoveFrequency: 1
