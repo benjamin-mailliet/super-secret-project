@@ -15,6 +15,18 @@ public class GlobalCombinaisonManager : MonoBehaviour, PlayerActionAsset.ICombin
         KEYBOARD
     };
 
+    public enum ACTION_INPUT
+    {
+        A_1,
+        B_2,
+        Y_3,
+        X_4,
+        BAS,
+        DROITE,
+        HAUT,
+        GAUCHE
+    }
+
 
     // Start is called before the first frame update
     void Start()
@@ -73,7 +85,7 @@ public class GlobalCombinaisonManager : MonoBehaviour, PlayerActionAsset.ICombin
             Debug.Log("Player input Action1 with " + context.control.device.displayName);
             foreach(GameObject monster in GameObject.FindGameObjectsWithTag("Monster"))
             {
-                monster.GetComponent<CombinaisonManager>().inputCombinaison(1, this.currentControlScheme);
+                monster.GetComponent<CombinaisonManager>().inputCombinaison(ACTION_INPUT.A_1, this.currentControlScheme);
             }
         }
     }
@@ -85,7 +97,7 @@ public class GlobalCombinaisonManager : MonoBehaviour, PlayerActionAsset.ICombin
             Debug.Log("Player input Action2 with " + context.control.device.displayName);
             foreach (GameObject monster in GameObject.FindGameObjectsWithTag("Monster"))
             {
-                monster.GetComponent<CombinaisonManager>().inputCombinaison(2, this.currentControlScheme);
+                monster.GetComponent<CombinaisonManager>().inputCombinaison(ACTION_INPUT.B_2, this.currentControlScheme);
             }
         }
         
@@ -98,7 +110,7 @@ public class GlobalCombinaisonManager : MonoBehaviour, PlayerActionAsset.ICombin
             Debug.Log("Player input Action3 with " + context.control.device.displayName);
             foreach (GameObject monster in GameObject.FindGameObjectsWithTag("Monster"))
             {
-                monster.GetComponent<CombinaisonManager>().inputCombinaison(3, this.currentControlScheme);
+                monster.GetComponent<CombinaisonManager>().inputCombinaison(ACTION_INPUT.Y_3, this.currentControlScheme);
             }
         }
     }
@@ -110,32 +122,95 @@ public class GlobalCombinaisonManager : MonoBehaviour, PlayerActionAsset.ICombin
             Debug.Log("Player input Action4 with " + context.control.device.displayName);
             foreach (GameObject monster in GameObject.FindGameObjectsWithTag("Monster"))
             {
-                monster.GetComponent<CombinaisonManager>().inputCombinaison(4, this.currentControlScheme);
+                monster.GetComponent<CombinaisonManager>().inputCombinaison(ACTION_INPUT.X_4, this.currentControlScheme);
             }
         }
     }
 
-    public static string displayCombinaisonForControlScheme(int combinaison, CONTROL_SCHEME currentControlScheme)
+    public static string displayCombinaisonForControlScheme(ACTION_INPUT combinaison, CONTROL_SCHEME currentControlScheme)
     {
         if (currentControlScheme == CONTROL_SCHEME.GAMEPAD)
         {
             switch (combinaison)
             {
-                case 1:
+                case ACTION_INPUT.A_1:
                     return "A";
-                case 2:
+                case ACTION_INPUT.B_2:
                     return "B";
-                case 3:
+                case ACTION_INPUT.Y_3:
                     return "Y";
-                case 4:
+                case ACTION_INPUT.X_4:
                     return "X";
+                case ACTION_INPUT.BAS:
+                    return "ba";
+                case ACTION_INPUT.DROITE:
+                    return "dr";
+                case ACTION_INPUT.HAUT:
+                    return "ha";
+                case ACTION_INPUT.GAUCHE:
+                    return "ga";
                 default:
                     return "";
             }
         }
         else
         {
-            return combinaison + "";
+            switch (combinaison) {
+                case ACTION_INPUT.A_1:
+                    return "1";
+                case ACTION_INPUT.B_2:
+                    return "2";
+                case ACTION_INPUT.Y_3:
+                    return "3";
+                case ACTION_INPUT.X_4:
+                    return "4";
+                case ACTION_INPUT.BAS:
+                    return "ba";
+                case ACTION_INPUT.DROITE:
+                    return "fr";
+                case ACTION_INPUT.HAUT:
+                    return "ha";
+                case ACTION_INPUT.GAUCHE:
+                    return "ga";
+                default:
+                    return "";
+            }
+        }
+    }
+
+    public void OnBas(InputAction.CallbackContext context) {
+        if (context.performed && Time.timeScale < 1.0f) {
+            Debug.Log("Player input Bas with " + context.control.device.displayName);
+            foreach (GameObject monster in GameObject.FindGameObjectsWithTag("Monster")) {
+                monster.GetComponent<CombinaisonManager>().inputCombinaison(ACTION_INPUT.BAS, this.currentControlScheme);
+            }
+        }
+    }
+
+    public void OnDroite(InputAction.CallbackContext context) {
+        if (context.performed && Time.timeScale < 1.0f) {
+            Debug.Log("Player input Droite with " + context.control.device.displayName);
+            foreach (GameObject monster in GameObject.FindGameObjectsWithTag("Monster")) {
+                monster.GetComponent<CombinaisonManager>().inputCombinaison(ACTION_INPUT.DROITE, this.currentControlScheme);
+            }
+        }
+    }
+
+    public void OnHaut(InputAction.CallbackContext context) {
+        if (context.performed && Time.timeScale < 1.0f) {
+            Debug.Log("Player input Haut with " + context.control.device.displayName);
+            foreach (GameObject monster in GameObject.FindGameObjectsWithTag("Monster")) {
+                monster.GetComponent<CombinaisonManager>().inputCombinaison(ACTION_INPUT.HAUT, this.currentControlScheme);
+            }
+        }
+    }
+
+    public void OnGauche(InputAction.CallbackContext context) {
+        if (context.performed && Time.timeScale < 1.0f) {
+            Debug.Log("Player input Gauche with " + context.control.device.displayName);
+            foreach (GameObject monster in GameObject.FindGameObjectsWithTag("Monster")) {
+                monster.GetComponent<CombinaisonManager>().inputCombinaison(ACTION_INPUT.GAUCHE, this.currentControlScheme);
+            }
         }
     }
 }

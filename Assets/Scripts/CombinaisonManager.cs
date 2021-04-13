@@ -1,11 +1,17 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 using UnityEngine.InputSystem;
+
+using static GlobalCombinaisonManager.ACTION_INPUT;
+using static GlobalCombinaisonManager;
+using System;
+using Random = UnityEngine.Random;
 
 public class CombinaisonManager : MonoBehaviour {
 
-    public List<int> currentCombinaison;
+    public List<ACTION_INPUT> currentCombinaison;
 
     private GameObject explosion;
 
@@ -35,16 +41,28 @@ public class CombinaisonManager : MonoBehaviour {
         }
     }
 
-    List<int> makeNewCombinaison() {
-        return  new List<int> { Random.Range(1, 5), Random.Range(1, 5), Random.Range(1, 5), Random.Range(1, 5) };
+    List<ACTION_INPUT> makeNewCombinaison() {
+
+        if (this.gameObject.name.Contains("Fly")) {
+            return new List<ACTION_INPUT> { X_4, GAUCHE, B_2, DROITE, Y_3,  HAUT, A_1, BAS};
+        } else {
+            return new List<ACTION_INPUT> { 
+                (ACTION_INPUT) Enum.GetValues(typeof(ACTION_INPUT)).GetValue(Random.Range(0, 7)),
+                (ACTION_INPUT)Enum.GetValues(typeof(ACTION_INPUT)).GetValue(Random.Range(0, 7)),
+                (ACTION_INPUT)Enum.GetValues(typeof(ACTION_INPUT)).GetValue(Random.Range(0, 7)),
+                (ACTION_INPUT)Enum.GetValues(typeof(ACTION_INPUT)).GetValue(Random.Range(0, 7)),
+                (ACTION_INPUT)Enum.GetValues(typeof(ACTION_INPUT)).GetValue(Random.Range(0, 7)),
+                (ACTION_INPUT)Enum.GetValues(typeof(ACTION_INPUT)).GetValue(Random.Range(0, 7))
+            };
+        }
     }
 
-    void reinitCombinaison(GlobalCombinaisonManager.CONTROL_SCHEME currentControlScheme = GlobalCombinaisonManager.CONTROL_SCHEME.GAMEPAD) {
+    void reinitCombinaison(CONTROL_SCHEME currentControlScheme = CONTROL_SCHEME.GAMEPAD) {
         currentCombinaison = makeNewCombinaison();
         updateUICurrentCombinaison(currentControlScheme);
     }
 
-    public void updateUICurrentCombinaison(GlobalCombinaisonManager.CONTROL_SCHEME currentControlScheme) {
+    public void updateUICurrentCombinaison(CONTROL_SCHEME currentControlScheme) {
         string currentCombinaisonText = "";
         for(int i = 0; i < currentCombinaison.Count; i++) {
             currentCombinaisonText = currentCombinaisonText + GlobalCombinaisonManager.displayCombinaisonForControlScheme(currentCombinaison[i], currentControlScheme);
@@ -56,9 +74,9 @@ public class CombinaisonManager : MonoBehaviour {
     }
 
     
-    public void inputCombinaison(int inputNumber, GlobalCombinaisonManager.CONTROL_SCHEME currentControlScheme)
+    public void inputCombinaison(ACTION_INPUT actionInput, CONTROL_SCHEME currentControlScheme)
     {
-        if (currentCombinaison[0] == inputNumber)
+        if (currentCombinaison[0] == actionInput)
         {
             currentCombinaison.RemoveAt(0);
             updateUICurrentCombinaison(currentControlScheme);

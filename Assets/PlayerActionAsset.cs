@@ -801,6 +801,38 @@ public class @PlayerActionAsset : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""Bas"",
+                    ""type"": ""Button"",
+                    ""id"": ""a8f8f34d-d059-41e4-a696-ca52b9e55ba9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""Droite"",
+                    ""type"": ""Button"",
+                    ""id"": ""dd73c81b-c3fb-43a7-8e35-d52284a79747"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""Haut"",
+                    ""type"": ""Button"",
+                    ""id"": ""0aff68b2-0499-42fd-aa77-aacf4ac8005a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""Gauche"",
+                    ""type"": ""Button"",
+                    ""id"": ""90d489f2-1d86-43dd-84a6-6ec55154edab"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -935,42 +967,158 @@ public class @PlayerActionAsset : IInputActionCollection, IDisposable
                     ""action"": ""4_BoutonOuest"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""New action map"",
-            ""id"": ""f6100f1b-d059-48c2-a790-d37d1a62f01a"",
-            ""actions"": [
-                {
-                    ""name"": ""New action"",
-                    ""type"": ""Button"",
-                    ""id"": ""4c1feb3d-e234-41de-b515-8065c85abf97"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                }
-            ],
-            ""bindings"": [
+                },
                 {
                     ""name"": """",
-                    ""id"": ""1cf2b6fe-945c-4524-b340-a2033c1e443e"",
-                    ""path"": """",
+                    ""id"": ""83f1b9d3-45a2-4c7c-9c21-d86670dddb51"",
+                    ""path"": ""<Gamepad>/dpad/down"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""New action"",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Bas"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e6739940-0b48-4a84-a3cd-5c576a5e840a"",
-                    ""path"": """",
+                    ""id"": ""97d03bbb-ccad-428d-b701-ca8015f689fb"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Bas"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2f8300d3-018e-44ef-946b-38689568ba3a"",
+                    ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""Bas"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d20b429a-7b81-42b2-be06-9fe97ff3fcd7"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Droite"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d553c807-f6b8-47e0-a6e9-1e7b6b0c9e73"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Droite"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8fa86f2e-25d2-46eb-98b9-0ad61721b274"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Droite"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b4c6eb41-4c3c-4018-a1f5-7221b1654601"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Haut"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""92394ef2-e3a8-4022-b3ae-934a26f9a962"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Haut"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""86fe378b-f0d9-41a2-8767-6267c6c41bf0"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Haut"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""29053709-efea-47ac-9a0d-6b3b74bfeb76"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Haut"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""249096ac-c88a-4592-bce1-26e6602c5ea9"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Gauche"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f83c3857-f975-476d-8aa8-40dddf3d305f"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Gauche"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d63b1e12-ea78-4bd1-b644-729ad8c7b735"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Gauche"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""84247a29-920a-4be1-81e5-f55969a62b55"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Gauche"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1066,9 +1214,10 @@ public class @PlayerActionAsset : IInputActionCollection, IDisposable
         m_Combinaison__2_BoutonEst = m_Combinaison.FindAction("2_BoutonEst", throwIfNotFound: true);
         m_Combinaison__3_BoutonNord = m_Combinaison.FindAction("3_BoutonNord", throwIfNotFound: true);
         m_Combinaison__4_BoutonOuest = m_Combinaison.FindAction("4_BoutonOuest", throwIfNotFound: true);
-        // New action map
-        m_Newactionmap = asset.FindActionMap("New action map", throwIfNotFound: true);
-        m_Newactionmap_Newaction = m_Newactionmap.FindAction("New action", throwIfNotFound: true);
+        m_Combinaison_Bas = m_Combinaison.FindAction("Bas", throwIfNotFound: true);
+        m_Combinaison_Droite = m_Combinaison.FindAction("Droite", throwIfNotFound: true);
+        m_Combinaison_Haut = m_Combinaison.FindAction("Haut", throwIfNotFound: true);
+        m_Combinaison_Gauche = m_Combinaison.FindAction("Gauche", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1309,6 +1458,10 @@ public class @PlayerActionAsset : IInputActionCollection, IDisposable
     private readonly InputAction m_Combinaison__2_BoutonEst;
     private readonly InputAction m_Combinaison__3_BoutonNord;
     private readonly InputAction m_Combinaison__4_BoutonOuest;
+    private readonly InputAction m_Combinaison_Bas;
+    private readonly InputAction m_Combinaison_Droite;
+    private readonly InputAction m_Combinaison_Haut;
+    private readonly InputAction m_Combinaison_Gauche;
     public struct CombinaisonActions
     {
         private @PlayerActionAsset m_Wrapper;
@@ -1317,6 +1470,10 @@ public class @PlayerActionAsset : IInputActionCollection, IDisposable
         public InputAction @_2_BoutonEst => m_Wrapper.m_Combinaison__2_BoutonEst;
         public InputAction @_3_BoutonNord => m_Wrapper.m_Combinaison__3_BoutonNord;
         public InputAction @_4_BoutonOuest => m_Wrapper.m_Combinaison__4_BoutonOuest;
+        public InputAction @Bas => m_Wrapper.m_Combinaison_Bas;
+        public InputAction @Droite => m_Wrapper.m_Combinaison_Droite;
+        public InputAction @Haut => m_Wrapper.m_Combinaison_Haut;
+        public InputAction @Gauche => m_Wrapper.m_Combinaison_Gauche;
         public InputActionMap Get() { return m_Wrapper.m_Combinaison; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1338,6 +1495,18 @@ public class @PlayerActionAsset : IInputActionCollection, IDisposable
                 @_4_BoutonOuest.started -= m_Wrapper.m_CombinaisonActionsCallbackInterface.On_4_BoutonOuest;
                 @_4_BoutonOuest.performed -= m_Wrapper.m_CombinaisonActionsCallbackInterface.On_4_BoutonOuest;
                 @_4_BoutonOuest.canceled -= m_Wrapper.m_CombinaisonActionsCallbackInterface.On_4_BoutonOuest;
+                @Bas.started -= m_Wrapper.m_CombinaisonActionsCallbackInterface.OnBas;
+                @Bas.performed -= m_Wrapper.m_CombinaisonActionsCallbackInterface.OnBas;
+                @Bas.canceled -= m_Wrapper.m_CombinaisonActionsCallbackInterface.OnBas;
+                @Droite.started -= m_Wrapper.m_CombinaisonActionsCallbackInterface.OnDroite;
+                @Droite.performed -= m_Wrapper.m_CombinaisonActionsCallbackInterface.OnDroite;
+                @Droite.canceled -= m_Wrapper.m_CombinaisonActionsCallbackInterface.OnDroite;
+                @Haut.started -= m_Wrapper.m_CombinaisonActionsCallbackInterface.OnHaut;
+                @Haut.performed -= m_Wrapper.m_CombinaisonActionsCallbackInterface.OnHaut;
+                @Haut.canceled -= m_Wrapper.m_CombinaisonActionsCallbackInterface.OnHaut;
+                @Gauche.started -= m_Wrapper.m_CombinaisonActionsCallbackInterface.OnGauche;
+                @Gauche.performed -= m_Wrapper.m_CombinaisonActionsCallbackInterface.OnGauche;
+                @Gauche.canceled -= m_Wrapper.m_CombinaisonActionsCallbackInterface.OnGauche;
             }
             m_Wrapper.m_CombinaisonActionsCallbackInterface = instance;
             if (instance != null)
@@ -1354,43 +1523,22 @@ public class @PlayerActionAsset : IInputActionCollection, IDisposable
                 @_4_BoutonOuest.started += instance.On_4_BoutonOuest;
                 @_4_BoutonOuest.performed += instance.On_4_BoutonOuest;
                 @_4_BoutonOuest.canceled += instance.On_4_BoutonOuest;
+                @Bas.started += instance.OnBas;
+                @Bas.performed += instance.OnBas;
+                @Bas.canceled += instance.OnBas;
+                @Droite.started += instance.OnDroite;
+                @Droite.performed += instance.OnDroite;
+                @Droite.canceled += instance.OnDroite;
+                @Haut.started += instance.OnHaut;
+                @Haut.performed += instance.OnHaut;
+                @Haut.canceled += instance.OnHaut;
+                @Gauche.started += instance.OnGauche;
+                @Gauche.performed += instance.OnGauche;
+                @Gauche.canceled += instance.OnGauche;
             }
         }
     }
     public CombinaisonActions @Combinaison => new CombinaisonActions(this);
-
-    // New action map
-    private readonly InputActionMap m_Newactionmap;
-    private INewactionmapActions m_NewactionmapActionsCallbackInterface;
-    private readonly InputAction m_Newactionmap_Newaction;
-    public struct NewactionmapActions
-    {
-        private @PlayerActionAsset m_Wrapper;
-        public NewactionmapActions(@PlayerActionAsset wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_Newactionmap_Newaction;
-        public InputActionMap Get() { return m_Wrapper.m_Newactionmap; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(NewactionmapActions set) { return set.Get(); }
-        public void SetCallbacks(INewactionmapActions instance)
-        {
-            if (m_Wrapper.m_NewactionmapActionsCallbackInterface != null)
-            {
-                @Newaction.started -= m_Wrapper.m_NewactionmapActionsCallbackInterface.OnNewaction;
-                @Newaction.performed -= m_Wrapper.m_NewactionmapActionsCallbackInterface.OnNewaction;
-                @Newaction.canceled -= m_Wrapper.m_NewactionmapActionsCallbackInterface.OnNewaction;
-            }
-            m_Wrapper.m_NewactionmapActionsCallbackInterface = instance;
-            if (instance != null)
-            {
-                @Newaction.started += instance.OnNewaction;
-                @Newaction.performed += instance.OnNewaction;
-                @Newaction.canceled += instance.OnNewaction;
-            }
-        }
-    }
-    public NewactionmapActions @Newactionmap => new NewactionmapActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -1465,9 +1613,9 @@ public class @PlayerActionAsset : IInputActionCollection, IDisposable
         void On_2_BoutonEst(InputAction.CallbackContext context);
         void On_3_BoutonNord(InputAction.CallbackContext context);
         void On_4_BoutonOuest(InputAction.CallbackContext context);
-    }
-    public interface INewactionmapActions
-    {
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnBas(InputAction.CallbackContext context);
+        void OnDroite(InputAction.CallbackContext context);
+        void OnHaut(InputAction.CallbackContext context);
+        void OnGauche(InputAction.CallbackContext context);
     }
 }
