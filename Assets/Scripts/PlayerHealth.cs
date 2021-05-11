@@ -1,26 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    private float health = 10f;
-    private float healthLossValue = 0.1f;
+    private float health = 100f;
+    private GameObject healthbar;
+    private Slider slider;
 
-    // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("HealthLoss", 1f, 1f);
+        slider = transform.Find("Canvas/Healthbar").gameObject.GetComponent<Slider>();
+        slider.maxValue = this.health;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        Debug.Log(this.health);
+        this.health -= Time.deltaTime;
+        slider.value = this.health;
     }
 
-    private void HealthLoss()
+    public void hit(int healthLoss)
     {
-        this.health -= this.healthLossValue;
+        health -= healthLoss;
     }
 }

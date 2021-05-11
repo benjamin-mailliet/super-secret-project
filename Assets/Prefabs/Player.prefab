@@ -85,6 +85,7 @@ GameObject:
   - component: {fileID: 1441769268700604530}
   - component: {fileID: 1441769268700604528}
   - component: {fileID: 3811696573185595506}
+  - component: {fileID: 2985418907971032986}
   m_Layer: 0
   m_Name: Player
   m_TagString: MainCamera
@@ -253,6 +254,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fce01b9c4ff461d46aa2503531d93f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2985418907971032986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441769268700604541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05d37dd79261ad3418719a71f8de134a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1441769269124470475
@@ -595,7 +608,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5376870130497233238}
   - component: {fileID: 6113466085939834730}
-  - component: {fileID: 7910623786451193531}
   m_Layer: 5
   m_Name: Healthbar
   m_TagString: Untagged
@@ -675,18 +687,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &7910623786451193531
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5517780293415766481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68faabc5d2ef8e842a08420c9770ece5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6162299708163620268
 GameObject:
   m_ObjectHideFlags: 0

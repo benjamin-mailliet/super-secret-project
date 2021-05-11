@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 3637042770813317025}
   - component: {fileID: 5473695990932650763}
   - component: {fileID: 2144786694811806039}
+  - component: {fileID: 1352344255031698559}
   m_Layer: 0
   m_Name: Fly
   m_TagString: Monster
@@ -122,8 +123,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3217725682520186059}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalPosition: {x: -1.0401, y: 0, z: 0}
+  m_LocalScale: {x: 0.29607743, y: 0.5, z: 1}
   m_Children:
   - {fileID: 3267756709290178771}
   m_Father: {fileID: 0}
@@ -205,3 +206,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentCombinaison: 
+--- !u!61 &1352344255031698559
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3217725682520186059}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.05996144, y: -0.1468373}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 10.2, y: 2.5}
+    newSize: {x: 10.2, y: 2.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.4675148, y: 1.6189762}
+  m_EdgeRadius: 0

@@ -195,4 +195,9 @@ public class PlayerMovment : MonoBehaviour, PlayerActionAsset.IPlayerActions
         }
     }
 
+    public void hit(int direction)
+    {
+        rigidBody.velocity = new Vector2(30 * direction, 20);
+    }
+
 }
