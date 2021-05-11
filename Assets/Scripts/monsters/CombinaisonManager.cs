@@ -9,11 +9,12 @@ using static GlobalCombinaisonManager;
 using System;
 using Random = UnityEngine.Random;
 
-public class CombinaisonManager : MonoBehaviour {
+public class CombinaisonManager : MonoBehaviour
+{
 
     public List<ACTION_INPUT> currentCombinaison;
 
-    public GameObject explosion;
+    public IMonster monsterScript;
 
     public GameObject a1Button;
     public GameObject b2Button;
@@ -26,8 +27,9 @@ public class CombinaisonManager : MonoBehaviour {
 
     private bool combinaisonFinished = false;
 
-    void Awake() {
-        
+    void Awake()
+    {
+        monsterScript = GetComponent<IMonster>();
     }
 
     // Start is called before the first frame update
@@ -36,25 +38,29 @@ public class CombinaisonManager : MonoBehaviour {
         reinitCombinaison();
     }
 
-
     // Update is called once per frame
     void Update()
     {
-        if (currentCombinaison.Count < 1 && !combinaisonFinished) {
+        if (currentCombinaison.Count < 1 && !combinaisonFinished)
+        {
             combinaisonFinished = true;
-            Debug.Log("Destroy the fly");
-            explosion = Instantiate(explosion, new Vector2(this.gameObject.transform.position.x, this.gameObject.transform.position.y), Quaternion.identity);
-            Destroy(this.explosion, 1);
-            Destroy(this.gameObject);            
+            if (monsterScript != null)
+            {
+                monsterScript.killed();
+            }
         }
     }
 
-    List<ACTION_INPUT> makeNewCombinaison() {
+    List<ACTION_INPUT> makeNewCombinaison()
+    {
 
-        if (this.gameObject.name.Contains("Fly")) {
-            return new List<ACTION_INPUT> { X_4, GAUCHE, B_2, DROITE, Y_3,  HAUT, A_1, BAS};
-        } else {
-            return new List<ACTION_INPUT> { 
+        if (this.gameObject.name.Contains("Fly"))
+        {
+            return new List<ACTION_INPUT> { X_4, GAUCHE, B_2, DROITE, Y_3, HAUT, A_1, BAS };
+        }
+        else
+        {
+            return new List<ACTION_INPUT> {
                 (ACTION_INPUT) Enum.GetValues(typeof(ACTION_INPUT)).GetValue(Random.Range(0, 7)),
                 (ACTION_INPUT)Enum.GetValues(typeof(ACTION_INPUT)).GetValue(Random.Range(0, 7)),
                 (ACTION_INPUT)Enum.GetValues(typeof(ACTION_INPUT)).GetValue(Random.Range(0, 7)),
@@ -65,24 +71,30 @@ public class CombinaisonManager : MonoBehaviour {
         }
     }
 
-    void reinitCombinaison(CONTROL_SCHEME currentControlScheme = CONTROL_SCHEME.GAMEPAD) {
+    void reinitCombinaison(CONTROL_SCHEME currentControlScheme = CONTROL_SCHEME.GAMEPAD)
+    {
         currentCombinaison = makeNewCombinaison();
         updateUICurrentCombinaison(currentControlScheme);
     }
 
-    public void updateUICurrentCombinaison(CONTROL_SCHEME currentControlScheme) {
-        foreach (Transform child in this.gameObject.transform.Find("VisualCombinaison")) {
+    public void updateUICurrentCombinaison(CONTROL_SCHEME currentControlScheme)
+    {
+        foreach (Transform child in this.gameObject.transform.Find("VisualCombinaison"))
+        {
             Destroy(child.gameObject);
         }
-        for (int i = 0; i < currentCombinaison.Count; i++) {
+        for (int i = 0; i < currentCombinaison.Count; i++)
+        {
             instantiateButtonPrefab(i, currentControlScheme);
         }
     }
 
-    private void instantiateButtonPrefab(int actionNumber, CONTROL_SCHEME currentControlScheme) {
+    private void instantiateButtonPrefab(int actionNumber, CONTROL_SCHEME currentControlScheme)
+    {
         Debug.Log("Instantiate button Prefab");
         //TODO ajouter les touches de clavier
-        switch (currentCombinaison[actionNumber]) {
+        switch (currentCombinaison[actionNumber])
+        {
             case ACTION_INPUT.A_1:
                 instantiateActionNumber(actionNumber, a1Button);
                 break;
@@ -110,7 +122,8 @@ public class CombinaisonManager : MonoBehaviour {
         }
     }
 
-    private void instantiateActionNumber(int actionNumber, GameObject gameObject) {
+    private void instantiateActionNumber(int actionNumber, GameObject gameObject)
+    {
         Debug.Log("Width : " + this.gameObject.transform.Find("VisualCombinaison").GetComponent<RectTransform>().rect.width);
         Debug.Log("X : " + this.gameObject.transform.Find("VisualCombinaison").position.x);
         Debug.Log("Position calculée : " + (this.gameObject.transform.Find("VisualCombinaison").position.x - this.gameObject.transform.Find("VisualCombinaison").GetComponent<RectTransform>().rect.width / 4 + actionNumber));
@@ -131,6 +144,6 @@ public class CombinaisonManager : MonoBehaviour {
         }
     }
 
-    
+
 
 }

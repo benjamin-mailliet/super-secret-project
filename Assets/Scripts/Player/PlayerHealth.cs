@@ -21,8 +21,13 @@ public class PlayerHealth : MonoBehaviour
         slider.value = this.health;
     }
 
-    public void hit(int healthLoss)
+    public void hit(int hitValue)
     {
-        health -= healthLoss;
+        health -= hitValue;
+    }
+
+    public void Heal(int healValue)
+    {
+        health += healValue;
     }
 }

@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fly : MonoBehaviour
+public class Fly : MonoBehaviour, IMonster
 {
     private GameObject player;
+    private PlayerCore playerCore;
+    public GameObject explosion;
     private Vector2 target;
 
     private float speed = 5f;
@@ -16,6 +18,7 @@ public class Fly : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
+        playerCore = player.GetComponent<PlayerCore>();
     }
 
     void Update()
@@ -38,5 +41,14 @@ public class Fly : MonoBehaviour
             float erraticValueY = Random.Range(-1 * strength, 1 * strength);
             target = new Vector2(player.transform.position.x + erraticValueX, player.transform.position.y + erraticValueY);
         }
+    }
+
+    public void killed()
+    {
+        Debug.Log("Destroy the fly");
+        explosion = Instantiate(explosion, new Vector2(this.gameObject.transform.position.x, this.gameObject.transform.position.y), Quaternion.identity);
+        Destroy(this.explosion, 1);
+        playerCore.Heal(3);
+        Destroy(this.gameObject);
     }
 }

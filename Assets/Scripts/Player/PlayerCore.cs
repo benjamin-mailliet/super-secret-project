@@ -22,6 +22,11 @@ public class PlayerCore : MonoBehaviour
         this.hitTimer -= Time.deltaTime;
     }
 
+    public void Heal(int healValue)
+    {
+        playerHealth.Heal(healValue);
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Monster" && this.hitTimer <= 0)
