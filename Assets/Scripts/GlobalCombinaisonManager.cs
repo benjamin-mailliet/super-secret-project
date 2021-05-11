@@ -35,12 +35,14 @@ public class GlobalCombinaisonManager : MonoBehaviour, PlayerActionAsset.ICombin
         (eventPtr, device) =>
         {
             var gamepad = device as Gamepad;
-            if (gamepad == null)
+            var mouse = device as Mouse;
+            var keyboard = device as Keyboard;
+            if (gamepad == null && mouse == null && this.currentControlScheme == CONTROL_SCHEME.GAMEPAD)
             {
                 this.currentControlScheme = CONTROL_SCHEME.KEYBOARD;
                 UpdateUIForEveryMonster();
             }
-            else
+            else if(keyboard == null && mouse == null && this.currentControlScheme == CONTROL_SCHEME.KEYBOARD)
             {
                 this.currentControlScheme = CONTROL_SCHEME.GAMEPAD;
                 UpdateUIForEveryMonster();

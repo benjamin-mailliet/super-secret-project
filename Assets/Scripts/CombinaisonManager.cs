@@ -13,7 +13,16 @@ public class CombinaisonManager : MonoBehaviour {
 
     public List<ACTION_INPUT> currentCombinaison;
 
-    private GameObject explosion;
+    public GameObject explosion;
+
+    public GameObject a1Button;
+    public GameObject b2Button;
+    public GameObject y3Button;
+    public GameObject x4Button;
+    public GameObject hautButton;
+    public GameObject basButton;
+    public GameObject gaucheButton;
+    public GameObject droiteButton;
 
     private bool combinaisonFinished = false;
 
@@ -24,7 +33,6 @@ public class CombinaisonManager : MonoBehaviour {
     // Start is called before the first frame update
     void Start()
     {
-        explosion = Resources.Load("Arcade Spark") as GameObject;
         reinitCombinaison();
     }
 
@@ -63,17 +71,53 @@ public class CombinaisonManager : MonoBehaviour {
     }
 
     public void updateUICurrentCombinaison(CONTROL_SCHEME currentControlScheme) {
-        string currentCombinaisonText = "";
-        for(int i = 0; i < currentCombinaison.Count; i++) {
-            currentCombinaisonText = currentCombinaisonText + GlobalCombinaisonManager.displayCombinaisonForControlScheme(currentCombinaison[i], currentControlScheme);
-            if(i < currentCombinaison.Count - 1) {
-                currentCombinaisonText = currentCombinaisonText + " - ";
-            }
+        foreach (Transform child in this.gameObject.transform.Find("VisualCombinaison")) {
+            Destroy(child.gameObject);
         }
-        this.gameObject.GetComponentInChildren<TextMesh>().text = currentCombinaisonText;
+        for (int i = 0; i < currentCombinaison.Count; i++) {
+            instantiateButtonPrefab(i, currentControlScheme);
+        }
     }
 
-    
+    private void instantiateButtonPrefab(int actionNumber, CONTROL_SCHEME currentControlScheme) {
+        Debug.Log("Instantiate button Prefab");
+        //TODO ajouter les touches de clavier
+        switch (currentCombinaison[actionNumber]) {
+            case ACTION_INPUT.A_1:
+                instantiateActionNumber(actionNumber, a1Button);
+                break;
+            case ACTION_INPUT.B_2:
+                instantiateActionNumber(actionNumber, b2Button);
+                break;
+            case ACTION_INPUT.Y_3:
+                instantiateActionNumber(actionNumber, y3Button);
+                break;
+            case ACTION_INPUT.X_4:
+                instantiateActionNumber(actionNumber, x4Button);
+                break;
+            case ACTION_INPUT.HAUT:
+                instantiateActionNumber(actionNumber, hautButton);
+                break;
+            case ACTION_INPUT.BAS:
+                instantiateActionNumber(actionNumber, basButton);
+                break;
+            case ACTION_INPUT.GAUCHE:
+                instantiateActionNumber(actionNumber, gaucheButton);
+                break;
+            case ACTION_INPUT.DROITE:
+                instantiateActionNumber(actionNumber, droiteButton);
+                break;
+        }
+    }
+
+    private void instantiateActionNumber(int actionNumber, GameObject gameObject) {
+        Debug.Log("Width : " + this.gameObject.transform.Find("VisualCombinaison").GetComponent<RectTransform>().rect.width);
+        Debug.Log("X : " + this.gameObject.transform.Find("VisualCombinaison").position.x);
+        Debug.Log("Position calculée : " + (this.gameObject.transform.Find("VisualCombinaison").position.x - this.gameObject.transform.Find("VisualCombinaison").GetComponent<RectTransform>().rect.width / 4 + actionNumber));
+
+        Instantiate(gameObject, new Vector2(this.gameObject.transform.Find("VisualCombinaison").position.x - this.gameObject.transform.Find("VisualCombinaison").GetComponent<RectTransform>().rect.width / 4 + actionNumber, this.gameObject.transform.Find("VisualCombinaison").position.y), Quaternion.identity, this.gameObject.transform.Find("VisualCombinaison"));
+    }
+
     public void inputCombinaison(ACTION_INPUT actionInput, CONTROL_SCHEME currentControlScheme)
     {
         if (currentCombinaison[0] == actionInput)
