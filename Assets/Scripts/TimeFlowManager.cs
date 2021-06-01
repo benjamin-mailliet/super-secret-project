@@ -39,13 +39,13 @@ public class TimeFlowManager : MonoBehaviour, PlayerActionAsset.IBulletTimeActio
     void Update()
     {        
         if(bulletTimeDurationCountdown != -1) {
-            GameObject.Find("BulletTimeDuration").GetComponent<Text>().text = (bulletTimeDurationCountdown * 10).ToString("0.00");
+            GameObject.Find("timer").GetComponent<Image>().fillAmount = (bulletTimeDurationCountdown * (1/slowdownFactor)) / bulletTimeDuration;
             bulletTimeDurationCountdown -= Time.deltaTime;
             if (bulletTimeDurationCountdown < 0) {
                 StopSlowMotion();
             }
         } else {
-            GameObject.Find("BulletTimeDuration").GetComponent<Text>().text = "";
+            GameObject.Find("timer").GetComponent<Image>().fillAmount = 1;
         }
         Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
     }
