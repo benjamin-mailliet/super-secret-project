@@ -8,11 +8,12 @@ public class PlayerMovment : MonoBehaviour, PlayerActionAsset.IPlayerActions
     private SpriteRenderer spriteRenderer;
     private Gamepad gamepad;
     PlayerActionAsset playerActions;
+    public Animator animator;
 
     private float moveAxis;
 
     // Move
-    float speed = 30;
+    float speed = 10;
     float decreaseSpeedOnJump = 1;
     private Vector2 moveDirection;
 
@@ -132,6 +133,7 @@ public class PlayerMovment : MonoBehaviour, PlayerActionAsset.IPlayerActions
             else
             {
                 rigidBody.velocity = new Vector2(moveDirection.x * speed, rigidBody.velocity.y);
+                this.animator.SetFloat("velocity", Mathf.Abs(rigidBody.velocity.x));
             }
 
             if (moveDirection.x < 0)
@@ -197,7 +199,7 @@ public class PlayerMovment : MonoBehaviour, PlayerActionAsset.IPlayerActions
 
     public void hit(int direction)
     {
-        rigidBody.velocity = new Vector2(30 * direction, 20);
+        rigidBody.velocity = new Vector2(50 * direction, 30);
     }
 
 }
