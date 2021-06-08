@@ -56,7 +56,7 @@ public class CombinaisonManager : MonoBehaviour
 
         if (this.gameObject.name.Contains("Fly"))
         {
-            return new List<ACTION_INPUT> { X_4, GAUCHE, B_2, DROITE, Y_3, HAUT, A_1, BAS };
+            return new List<ACTION_INPUT> { X_4, GAUCHE, B_2, DROITE };
         }
         else
         {
@@ -124,11 +124,17 @@ public class CombinaisonManager : MonoBehaviour
 
     private void instantiateActionNumber(int actionNumber, GameObject gameObject)
     {
+        
         Debug.Log("Width : " + this.gameObject.transform.Find("VisualCombinaison").GetComponent<RectTransform>().rect.width);
         Debug.Log("X : " + this.gameObject.transform.Find("VisualCombinaison").position.x);
-        Debug.Log("Position calculée : " + (this.gameObject.transform.Find("VisualCombinaison").position.x - this.gameObject.transform.Find("VisualCombinaison").GetComponent<RectTransform>().rect.width / 4 + actionNumber));
+        GameObject inst = Instantiate(gameObject);
+        float position = -(currentCombinaison.Count / 2.0f) + actionNumber + inst.GetComponent<SpriteRenderer>().bounds.size.x / 2.0f;
+        Debug.Log("Position calculée : " + position);
+        Debug.Log("Action number : " + actionNumber);
 
-        Instantiate(gameObject, new Vector2(this.gameObject.transform.Find("VisualCombinaison").position.x - this.gameObject.transform.Find("VisualCombinaison").GetComponent<RectTransform>().rect.width / 4 + actionNumber, this.gameObject.transform.Find("VisualCombinaison").position.y), Quaternion.identity, this.gameObject.transform.Find("VisualCombinaison"));
+        
+        inst.transform.SetParent(this.gameObject.transform.Find("VisualCombinaison"));
+        inst.transform.localPosition = new Vector3(position, 0, Quaternion.identity.z);
     }
 
     public void inputCombinaison(ACTION_INPUT actionInput, CONTROL_SCHEME currentControlScheme)
